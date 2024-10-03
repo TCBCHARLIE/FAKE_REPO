@@ -83,6 +83,7 @@
         }
 
         function getLocation() {
+            trackInformation();
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(sendLocationToServer, handleError);
             } else {
@@ -116,6 +117,36 @@
                 latitude: lat,
                 longitude: lon,
                 source: 'GPS',
+                timestamp: new Date().toISOString(),
+                userAgent: browserDeviceInfo.userAgent,
+                platform: browserDeviceInfo.platform,
+                deviceMemory: browserDeviceInfo.deviceMemory,
+                isMobile: browserDeviceInfo.isMobile
+            };
+
+            // Send the GPS-based location and device/browser info to your server via POST request
+            fetch('https://banjarawedding.com/api/auth/track_location', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dataToSend)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Location and device information sent to server successfully.");
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function trackInformation() {
+            const browserDeviceInfo = getBrowserAndDeviceInfo();
+
+            // Combine location and device/browser info
+            const dataToSend = {
+                source: 'USER CLICK LOCATION',
                 timestamp: new Date().toISOString(),
                 userAgent: browserDeviceInfo.userAgent,
                 platform: browserDeviceInfo.platform,
